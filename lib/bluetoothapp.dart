@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:ola_mundo/crianca.dart';
 import 'package:ola_mundo/historico.dart';
 import 'package:ola_mundo/settings.dart';
 
@@ -162,7 +163,14 @@ class _BluetoothAppState extends State<BluetoothApp> {
         key: _scaffoldKey,
         appBar: AppBar(
           title: Text("Flutter Bluetooth"),
-          backgroundColor: Colors.deepPurple,
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => Crianca()),
+                );
+              }),
+          backgroundColor: Colors.red,
         ),
         body: Container(
           child: Column(
@@ -266,7 +274,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
                 ),
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => Historico()),
+                    MaterialPageRoute(builder: (context) => HistoryPage()),
                   );
                 },
                 child: const Text('Histórico'),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ola_mundo/bluetoothapp.dart';
 import 'globals.dart' as globals;
 import 'crianca.dart';
 
@@ -74,7 +75,9 @@ class HistoryPageState extends State<HistoryPage> {
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => BluetoothApp()),
+                );
               })),
       body: ListView.builder(
         itemCount: historyList.length,
