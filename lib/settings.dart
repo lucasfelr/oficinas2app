@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ola_mundo/bluetoothapp.dart';
 import 'globals.dart' as globals;
 import 'crianca.dart';
 import 'package:cupertino_setting_control/cupertino_setting_control.dart';
@@ -93,7 +94,7 @@ class _SettingsState extends State<Settings> {
           const Padding(
               padding: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 5.0),
               child: const Text(
-                'Profile',
+                'Dificuldade',
                 style: TextStyle(
                   color: CupertinoColors.systemBlue,
                   fontSize: 15.0,
@@ -102,116 +103,160 @@ class _SettingsState extends State<Settings> {
               )),
           new SettingRow(
             rowData: SettingsDropDownConfig(
-                title: 'User Area',
-                initialKey: _searchAreaResult,
-                choices: {
-                  'Germany': 'Germany',
-                  'Spain': 'Spain',
-                  'France': 'France'
-                }),
-            onSettingDataRowChange: onSearchAreaChange,
+                title: 'Contagem',
+                initialKey:
+                    globals.criancasContagemDificuldade[globals.iterador],
+                choices: {'Easy': 'Easy', 'Normal': 'Normal', 'Hard': 'Hard'}),
+            onSettingDataRowChange: trocaContagem,
             config: SettingsRowConfiguration(
                 showAsTextField: false,
-                showTitleLeft: !_titleOnTop,
-                showTopTitle: _titleOnTop,
+                showTitleLeft: false,
+                showTopTitle: true,
                 showAsSingleSetting: false),
           ),
-          SizedBox(height: _titleOnTop ? 10.0 : 0.0),
           new SettingRow(
-            rowData: SettingsSliderConfig(
-              title: 'Age',
-              from: 18,
-              to: 120,
-              initialValue: 20,
-              justIntValues: true,
-              unit: ' years',
-            ),
-            onSettingDataRowChange: (double resultVal) {},
+            rowData: SettingsDropDownConfig(
+                title: 'Cor',
+                initialKey: globals.criancasCorDificuldade[globals.iterador],
+                choices: {'Easy': 'Easy', 'Normal': 'Normal', 'Hard': 'Hard'}),
+            onSettingDataRowChange: trocaCor,
             config: SettingsRowConfiguration(
                 showAsTextField: false,
-                showTitleLeft: !_titleOnTop,
-                showTopTitle: _titleOnTop,
+                showTitleLeft: false,
+                showTopTitle: true,
                 showAsSingleSetting: false),
           ),
-          SizedBox(height: _titleOnTop ? 10.0 : 0.0),
           new SettingRow(
-            rowData: SettingsSliderFromToConfig(
-              title: 'Weight',
-              from: 40,
-              to: 120,
-              initialFrom: 50,
-              initialTo: 80,
-              justIntValues: true,
-              unit: 'kg',
-            ),
-            onSettingDataRowChange: (List<double> resultVals) {},
+            rowData: SettingsDropDownConfig(
+                title: 'Forma',
+                initialKey: globals.criancasFormaDificuldade[globals.iterador],
+                choices: {'Easy': 'Easy', 'Normal': 'Normal', 'Hard': 'Hard'}),
+            onSettingDataRowChange: trocaForma,
             config: SettingsRowConfiguration(
                 showAsTextField: false,
-                showTitleLeft: !_titleOnTop,
-                showTopTitle: _titleOnTop,
+                showTitleLeft: false,
+                showTopTitle: true,
                 showAsSingleSetting: false),
           ),
-          SizedBox(height: _titleOnTop ? 10.0 : 0.0),
           new SettingRow(
-            rowData: SettingsTextFieldConfig(
-              title: 'Name',
-              initialValue: 'Chris',
-            ),
-            onSettingDataRowChange: (String resultVal) {},
+            rowData: SettingsDropDownConfig(
+                title: 'Dia da Semana',
+                initialKey: globals.criancasDiaDificuldade[globals.iterador],
+                choices: {'Easy': 'Easy', 'Normal': 'Normal', 'Hard': 'Hard'}),
+            onSettingDataRowChange: trocaDia,
             config: SettingsRowConfiguration(
                 showAsTextField: false,
-                showTitleLeft: !_titleOnTop,
-                showTopTitle: _titleOnTop,
+                showTitleLeft: false,
+                showTopTitle: true,
                 showAsSingleSetting: false),
           ),
+          //       SizedBox(height: _titleOnTop ? 10.0 : 0.0),
+          //       new SettingRow(
+          //         rowData: SettingsSliderConfig(
+          //           title: 'Age',
+          //           from: 18,
+          //           to: 120,
+          //           initialValue: 20,
+          //           justIntValues: true,
+          //           unit: ' years',
+          //         ),
+          //         onSettingDataRowChange: (double resultVal) {},
+          //         config: SettingsRowConfiguration(
+          //             showAsTextField: false,
+          //             showTitleLeft: !_titleOnTop,
+          //             showTopTitle: _titleOnTop,
+          //             showAsSingleSetting: false),
+          //       ),
+          //       SizedBox(height: _titleOnTop ? 10.0 : 0.0),
+          //       new SettingRow(
+          //         rowData: SettingsSliderFromToConfig(
+          //           title: 'Weight',
+          //           from: 40,
+          //           to: 120,
+          //           initialFrom: 50,
+          //           initialTo: 80,
+          //           justIntValues: true,
+          //           unit: 'kg',
+          //         ),
+          //         onSettingDataRowChange: (List<double> resultVals) {},
+          //         config: SettingsRowConfiguration(
+          //             showAsTextField: false,
+          //             showTitleLeft: !_titleOnTop,
+          //             showTopTitle: _titleOnTop,
+          //             showAsSingleSetting: false),
+          //       ),
+          //       SizedBox(height: _titleOnTop ? 10.0 : 0.0),
+          //       new SettingRow(
+          //         rowData: SettingsTextFieldConfig(
+          //           title: 'Name',
+          //           initialValue: 'Chris',
+          //         ),
+          //         onSettingDataRowChange: (String resultVal) {},
+          //         config: SettingsRowConfiguration(
+          //             showAsTextField: false,
+          //             showTitleLeft: !_titleOnTop,
+          //             showTopTitle: _titleOnTop,
+          //             showAsSingleSetting: false),
+          //       ),
         ],
       ),
     );
 
-    final modifyProfileTile = new Material(
-        color: Colors.transparent,
-        child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Padding(
-                  padding: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 5.0),
-                  child: const Text(
-                    'Profile Options',
-                    style: TextStyle(
-                      color: CupertinoColors.systemBlue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15.0,
-                    ),
-                  )),
-              SettingRow(
-                rowData: SettingsButtonConfig(
-                  title: 'Delete Profile',
-                  tick: true,
-                  functionToCall: () {},
-                ),
-                style: const SettingsRowStyle(
-                    backgroundColor: CupertinoColors.lightBackgroundGray),
-                config: SettingsRowConfiguration(
-                    showAsTextField: false,
-                    showTitleLeft: !_titleOnTop,
-                    showTopTitle: _titleOnTop,
-                    showAsSingleSetting: false),
-              )
-            ]));
+    // final modifyProfileTile = new Material(
+    //     color: Colors.transparent,
+    //     child: new Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: <Widget>[
+    //           const Padding(
+    //               padding: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 5.0),
+    //               child: const Text(
+    //                 'Profile Options',
+    //                 style: TextStyle(
+    //                   color: CupertinoColors.systemBlue,
+    //                   fontWeight: FontWeight.bold,
+    //                   fontSize: 15.0,
+    //                 ),
+    //               )),
+    //           SettingRow(
+    //             rowData: SettingsButtonConfig(
+    //               title: 'Delete Profile',
+    //               tick: true,
+    //               functionToCall: () {},
+    //             ),
+    //             style: const SettingsRowStyle(
+    //                 backgroundColor: CupertinoColors.lightBackgroundGray),
+    //             config: SettingsRowConfiguration(
+    //                 showAsTextField: false,
+    //                 showTitleLeft: !_titleOnTop,
+    //                 showTopTitle: _titleOnTop,
+    //                 showAsSingleSetting: false),
+    //           )
+    //         ]));
 
     final List<Widget> widgetList = [
-      titleOnTopSwitch,
+      //titleOnTopSwitch,
       const SizedBox(height: 15.0),
       profileSettingsTile,
       const SizedBox(height: 15.0),
-      privacySettings,
+      //privacySettings,
       const SizedBox(height: 15.0),
-      legalStuff,
+      //legalStuff,
       const SizedBox(height: 15.0),
-      Row(children: [Expanded(child: modifyProfileTile)]),
+      //Row(children: [Expanded(child: modifyProfileTile)]),
     ];
 
     return new Scaffold(
+      appBar: AppBar(
+        title: Text("Configurações " + globals.criancas[globals.iterador]),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => BluetoothApp()),
+              );
+            }),
+        backgroundColor: Colors.red,
+      ),
       body: Padding(
           padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
           child: ListView(
@@ -226,9 +271,27 @@ class _SettingsState extends State<Settings> {
     });
   }
 
-  void onSearchAreaChange(String data) {
+  void trocaContagem(String data) {
     setState(() {
-      _searchAreaResult = data;
+      globals.criancasContagemDificuldade[globals.iterador] = data;
+    });
+  }
+
+  void trocaCor(String data) {
+    setState(() {
+      globals.criancasCorDificuldade[globals.iterador] = data;
+    });
+  }
+
+  void trocaDia(String data) {
+    setState(() {
+      globals.criancasDiaDificuldade[globals.iterador] = data;
+    });
+  }
+
+  void trocaForma(String data) {
+    setState(() {
+      globals.criancasFormaDificuldade[globals.iterador] = data;
     });
   }
 }

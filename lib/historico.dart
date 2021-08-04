@@ -80,11 +80,25 @@ class HistoryPageState extends State<HistoryPage> {
                 );
               })),
       body: ListView.builder(
-        itemCount: historyList.length,
+        itemCount: globals.historyList.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             title: Text(
-                ' ${historyList[index].data}   ${historyList[index].dateTime.toString()}'),
+              globals.historyList[index].nome +
+                  '||' +
+                  globals.historyList[index].ex +
+                  '||' +
+                  globals.historyList[index].dificulty +
+                  '||' +
+                  globals.historyList[index].nota.toString() +
+                  '||' +
+                  globals.historyList[index].dateTime.toString(),
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           );
         },
       ),

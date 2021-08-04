@@ -7,6 +7,8 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:ola_mundo/crianca.dart';
 import 'package:ola_mundo/historico.dart';
 import 'package:ola_mundo/settings.dart';
+import 'package:ola_mundo/waiting.dart';
+import 'globals.dart' as globals;
 
 class BluetoothApp extends StatefulWidget {
   @override
@@ -24,6 +26,74 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   //Defina algumas variáveis, que serão necessárias posteriormente
   List<BluetoothDevice> _devicesList = [];
+
+  String getEx1() {
+    String result = '';
+    if (globals.listaEx1['Contagem'] == true) {
+      result = result + 'Contagem';
+    }
+    if (globals.listaEx1['Cor'] == true) {
+      result = result + ', Cor';
+    }
+    if (globals.listaEx1['Forma'] == true) {
+      result = result + ', Forma';
+    }
+    if (globals.listaEx1['Dia'] == true) {
+      result = result + ', Dia';
+    }
+    return result;
+  }
+
+  String getEx2() {
+    String result = '';
+    if (globals.listaEx2['Contagem'] == true) {
+      result = result + 'Contagem';
+    }
+    if (globals.listaEx2['Cor'] == true) {
+      result = result + ', Cor';
+    }
+    if (globals.listaEx2['Forma'] == true) {
+      result = result + ', Forma';
+    }
+    if (globals.listaEx2['Dia'] == true) {
+      result = result + ', Dia';
+    }
+    return result;
+  }
+
+  String getEx3() {
+    String result = '';
+    if (globals.listaEx3['Contagem'] == true) {
+      result = result + 'Contagem';
+    }
+    if (globals.listaEx3['Cor'] == true) {
+      result = result + ', Cor';
+    }
+    if (globals.listaEx3['Forma'] == true) {
+      result = result + ', Forma';
+    }
+    if (globals.listaEx3['Dia'] == true) {
+      result = result + ', Dia';
+    }
+    return result;
+  }
+
+  String getEx4() {
+    String result = '';
+    if (globals.listaEx4['Contagem'] == true) {
+      result = result + 'Contagem';
+    }
+    if (globals.listaEx4['Cor'] == true) {
+      result = result + ', Cor';
+    }
+    if (globals.listaEx4['Forma'] == true) {
+      result = result + ', Forma';
+    }
+    if (globals.listaEx4['Dia'] == true) {
+      result = result + ', Dia';
+    }
+    return result;
+  }
 
   BluetoothDevice _device;
   bool _connected = false;
@@ -166,6 +236,11 @@ class _BluetoothAppState extends State<BluetoothApp> {
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
+                globals.criancasValue[0] = false;
+                globals.criancasValue[1] = false;
+                globals.criancasValue[2] = false;
+                globals.criancasValue[3] = false;
+                globals.historyList = [];
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => Crianca()),
                 );
@@ -177,19 +252,10 @@ class _BluetoothAppState extends State<BluetoothApp> {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: new IconButton(
-                    icon: Icon(
-                      Icons.settings,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {}),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
                   "PAIRED DEVICES",
-                  style: TextStyle(fontSize: 24, color: Colors.blue),
+                  style: TextStyle(fontSize: 20, color: Colors.blue),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -225,7 +291,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(1.0),
                 child: Card(
                   elevation: 4,
                   child: Padding(
@@ -238,7 +304,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            "Ex 1",
+                            getEx1(),
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.green,
@@ -247,9 +313,132 @@ class _BluetoothAppState extends State<BluetoothApp> {
                         ),
                         // ignore: deprecated_member_use
                         FlatButton(
-                          onPressed:
-                              // To be implemented : _sendOnMessageToBluetooth()
-                              _connected ? _sendOnMessageToBluetooth : null,
+                          onPressed: () {
+                            // To be implemented : _sendOnMessageToBluetooth()
+                            // _connected ? _sendOnMessageToBluetooth : null,
+                            globals.iteradorex = 0;
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Waiting()),
+                            );
+                          },
+                          child: Text("Começar"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: Card(
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    // Defining a Row containing THREE main Widgets:
+                    // 1. Text (wrapped with “Expanded”)
+                    // 2. FlatButton
+                    // 3. FlatButton
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            getEx2(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                        // ignore: deprecated_member_use
+                        FlatButton(
+                          onPressed: () {
+                            // To be implemented : _sendOnMessageToBluetooth()
+                            // _connected ? _sendOnMessageToBluetooth : null,
+                            globals.iteradorex = 1;
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Waiting()),
+                            );
+                          },
+                          child: Text("Começar"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: Card(
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    // Defining a Row containing THREE main Widgets:
+                    // 1. Text (wrapped with “Expanded”)
+                    // 2. FlatButton
+                    // 3. FlatButton
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            getEx3(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                        // ignore: deprecated_member_use
+                        FlatButton(
+                          onPressed: () {
+                            // To be implemented : _sendOnMessageToBluetooth()
+                            // _connected ? _sendOnMessageToBluetooth : null,
+                            globals.iteradorex = 2;
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Waiting()),
+                            );
+                          },
+                          child: Text("Começar"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: Card(
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    // Defining a Row containing THREE main Widgets:
+                    // 1. Text (wrapped with “Expanded”)
+                    // 2. FlatButton
+                    // 3. FlatButton
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            getEx4(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                        // ignore: deprecated_member_use
+                        FlatButton(
+                          onPressed: () {
+                            // To be implemented : _sendOnMessageToBluetooth()
+                            // _connected ? _sendOnMessageToBluetooth : null,
+                            globals.iteradorex = 3;
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Waiting()),
+                            );
+                          },
                           child: Text("Começar"),
                         ),
                       ],

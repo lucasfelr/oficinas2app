@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'globals.dart' as globals;
 import 'crianca.dart';
 
@@ -11,10 +12,22 @@ class _CadastrarState extends State<Cadastrar> {
   String email = '';
   String password = '';
   String aux = '';
+  int auxint = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Cadastro"),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => Crianca()),
+              );
+            }),
+        backgroundColor: Colors.red,
+      ),
       body: SingleChildScrollView(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -34,12 +47,26 @@ class _CadastrarState extends State<Cadastrar> {
                     border: OutlineInputBorder(),
                   ),
                 ),
+                new TextField(
+                  onChanged: (text) {
+                    auxint = int.parse(text) - 1;
+                  },
+                  decoration: new InputDecoration(
+                    labelText: "Selecione o slot (1-4)",
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                ), // Only numbers can be entered
                 SizedBox(height: 15),
                 RaisedButton(
                   onPressed: () {
-                    globals.criancas[globals.iterador] = aux;
-                    globals.criancasValue[globals.iterador] = false;
-                    globals.iterador = (globals.iterador + 1) % 4;
+                    if (auxint >= 0 && auxint <= 3) {
+                      globals.iterador = auxint;
+                      globals.criancas[globals.iterador] = aux;
+                    }
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => Crianca()),
                     );
