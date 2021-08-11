@@ -17,9 +17,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:ola_mundo/bluetoothapp.dart';
-import 'appcontroller.dart';
+import 'package:ola_mundo/bt2.dart';
 import 'cadastrar.dart';
-import 'homepage.dart';
 import 'globals.dart' as globals;
 
 /// This is the main application widget.
@@ -145,6 +144,7 @@ class _CriancaState extends State<Crianca> {
                         globals.criancasValue[3] == true) {
                       setIterador();
                       Navigator.of(context).pushReplacement(
+                        //MaterialPageRoute(builder: (context) => BluetoothApp()),
                         MaterialPageRoute(builder: (context) => BluetoothApp()),
                       );
                     }

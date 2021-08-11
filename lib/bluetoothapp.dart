@@ -1,10 +1,11 @@
 import 'dart:typed_data';
-
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:ola_mundo/crianca.dart';
+import 'package:ola_mundo/customise.dart';
 import 'package:ola_mundo/historico.dart';
 import 'package:ola_mundo/settings.dart';
 import 'package:ola_mundo/waiting.dart';
@@ -27,19 +28,34 @@ class _BluetoothAppState extends State<BluetoothApp> {
   //Defina algumas variáveis, que serão necessárias posteriormente
   List<BluetoothDevice> _devicesList = [];
 
+  var jason = {};
+  List<String> message = [null, null, null, null];
+
   String getEx1() {
     String result = '';
     if (globals.listaEx1['Contagem'] == true) {
       result = result + 'Contagem';
+      globals.jex[0]['dificuldade'] = globals.diff[0][globals.iterador];
+      jason['add'] = globals.jex[0];
+      message[0] = json.encode(jason['add']);
     }
     if (globals.listaEx1['Cor'] == true) {
-      result = result + ', Cor';
+      result = result + ' Cor';
+      globals.jex[1]['dificuldade'] = globals.diff[1][globals.iterador];
+      jason['add'] = globals.jex[1];
+      message[1] = json.encode(jason['add']);
     }
     if (globals.listaEx1['Forma'] == true) {
-      result = result + ', Forma';
+      result = result + ' Forma';
+      globals.jex[2]['dificuldade'] = globals.diff[2][globals.iterador];
+      jason['add'] = globals.jex[2];
+      message[2] = json.encode(jason['add']);
     }
     if (globals.listaEx1['Dia'] == true) {
-      result = result + ', Dia';
+      result = result + ' Dia';
+      globals.jex[3]['dificuldade'] = globals.diff[3][globals.iterador];
+      jason['add'] = globals.jex[3];
+      message[3] = json.encode(jason['add']);
     }
     return result;
   }
@@ -50,13 +66,13 @@ class _BluetoothAppState extends State<BluetoothApp> {
       result = result + 'Contagem';
     }
     if (globals.listaEx2['Cor'] == true) {
-      result = result + ', Cor';
+      result = result + ' Cor';
     }
     if (globals.listaEx2['Forma'] == true) {
-      result = result + ', Forma';
+      result = result + ' Forma';
     }
     if (globals.listaEx2['Dia'] == true) {
-      result = result + ', Dia';
+      result = result + ' Dia';
     }
     return result;
   }
@@ -67,13 +83,13 @@ class _BluetoothAppState extends State<BluetoothApp> {
       result = result + 'Contagem';
     }
     if (globals.listaEx3['Cor'] == true) {
-      result = result + ', Cor';
+      result = result + ' Cor';
     }
     if (globals.listaEx3['Forma'] == true) {
-      result = result + ', Forma';
+      result = result + ' Forma';
     }
     if (globals.listaEx3['Dia'] == true) {
-      result = result + ', Dia';
+      result = result + ' Dia';
     }
     return result;
   }
@@ -84,13 +100,13 @@ class _BluetoothAppState extends State<BluetoothApp> {
       result = result + 'Contagem';
     }
     if (globals.listaEx4['Cor'] == true) {
-      result = result + ', Cor';
+      result = result + ' Cor';
     }
     if (globals.listaEx4['Forma'] == true) {
-      result = result + ', Forma';
+      result = result + ' Forma';
     }
     if (globals.listaEx4['Dia'] == true) {
-      result = result + ', Dia';
+      result = result + ' Dia';
     }
     return result;
   }
@@ -158,20 +174,27 @@ class _BluetoothAppState extends State<BluetoothApp> {
     );
   }
 
-  void _sendOnMessageToBluetooth() {
+  void _sendOnMessageToBluetooth(message) {
     bluetooth.isConnected.then((isConnected) {
       if (isConnected) {
-        bluetooth.write("1");
+        bluetooth.write(message);
         show('Device Turned On');
       }
     });
   }
 
-  void _sendOffMessageToBluetooth() {
+  void _sendMessageToBluetooth(message) {
     bluetooth.isConnected.then((isConnected) {
       if (isConnected) {
-        bluetooth.write("0");
-        show('Device Turned Off');
+        bluetooth.write(message);
+      }
+    });
+  }
+
+  void _readMessageToBluetooth() {
+    bluetooth.isConnected.then((isConnected) {
+      if (isConnected) {
+        bluetooth.onRead();
       }
     });
   }
@@ -317,6 +340,11 @@ class _BluetoothAppState extends State<BluetoothApp> {
                             // To be implemented : _sendOnMessageToBluetooth()
                             // _connected ? _sendOnMessageToBluetooth : null,
                             globals.iteradorex = 0;
+                            print(message[0]);
+                            print(message[1]);
+                            print(message[2]);
+                            print(message[3]);
+                            _sendMessageToBluetooth(message[0]);
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => Waiting()),
@@ -474,7 +502,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
                 ),
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => Settings()),
+                    MaterialPageRoute(builder: (context) => Customise()),
                   );
                 },
                 child: const Text('Customizar Exercícios'),
