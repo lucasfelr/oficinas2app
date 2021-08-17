@@ -18,7 +18,7 @@ class AppWidget extends StatelessWidget {
                 ? Brightness.dark
                 : Brightness.light,
           ),
-          home: MyHomePage(),
+          home: Crianca(),
         );
       },
     );

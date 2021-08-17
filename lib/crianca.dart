@@ -15,11 +15,15 @@
 //
 // Requires one of its ancestors to be a [Material] widget.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:ola_mundo/bluetoothapp.dart';
 import 'package:ola_mundo/bt2.dart';
 import 'cadastrar.dart';
 import 'globals.dart' as globals;
+import 'dart:async';
+import 'dart:io';
 
 /// This is the main application widget.
 enum cup { cp1, cp2, cp3, cp4 }
@@ -35,6 +39,7 @@ class Crianca extends StatefulWidget {
 /// This is the private State class that goes with Crianca.
 class _CriancaState extends State<Crianca> {
   var _character;
+  String filename;
   void setIterador() {
     for (int i = 0; i < 4; i++) {
       if (globals.criancasValue[i] == true) {
@@ -43,11 +48,71 @@ class _CriancaState extends State<Crianca> {
     }
   }
 
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/' + filename);
+  }
+
+  Future<String> readFile() async {
+    try {
+      final file = await _localFile;
+
+      // Read the file
+      final contents = await file.readAsString();
+
+      return contents;
+    } catch (e) {
+      // If encountering an error, return 0
+      return '';
+    }
+  }
+
+  Future<File> writeFile(String counter) async {
+    final file = await _localFile;
+
+    // Write the file
+    return file.writeAsString(counter);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Escolha a Criança'),
+        leading: IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              filename = 'crianca0.txt';
+              readFile().then((String value) {
+                setState(() {
+                  globals.criancas[0] = value;
+                });
+              });
+              filename = 'crianca1.txt';
+              readFile().then((String value) {
+                setState(() {
+                  globals.criancas[1] = value;
+                });
+              });
+              filename = 'crianca2.txt';
+              readFile().then((String value) {
+                setState(() {
+                  globals.criancas[2] = value;
+                });
+              });
+              filename = 'crianca3.txt';
+              readFile().then((String value) {
+                setState(() {
+                  globals.criancas[3] = value;
+                });
+              });
+            }),
       ),
       body: SingleChildScrollView(
         child: SizedBox(

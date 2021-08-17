@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'globals.dart' as globals;
 import 'crianca.dart';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:async';
+import 'dart:io';
 
 class Cadastrar extends StatefulWidget {
   @override
@@ -13,6 +17,39 @@ class _CadastrarState extends State<Cadastrar> {
   String password = '';
   String aux = '';
   int auxint = 0;
+  String filename = '';
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/' + filename);
+  }
+
+  Future<String> readFile() async {
+    try {
+      final file = await _localFile;
+
+      // Read the file
+      final contents = await file.readAsString();
+
+      return contents;
+    } catch (e) {
+      // If encountering an error, return 0
+      return '';
+    }
+  }
+
+  Future<File> writeFile(String counter) async {
+    final file = await _localFile;
+
+    // Write the file
+    return file.writeAsString(counter);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +103,8 @@ class _CadastrarState extends State<Cadastrar> {
                     if (auxint >= 0 && auxint <= 3) {
                       globals.iterador = auxint;
                       globals.criancas[globals.iterador] = aux;
+                      filename = 'crianca$auxint.txt';
+                      writeFile(aux);
                     }
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => Crianca()),
