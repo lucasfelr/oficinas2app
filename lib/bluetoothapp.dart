@@ -48,48 +48,56 @@ class _BluetoothAppState extends State<BluetoothApp> {
   String getEx1() {
     String result = '';
     if (globals.listaEx1['Contagem'] == true) {
-      if (globals.diff[0][globals.iterador] == 'Easy') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
-      } else if (globals.diff[0][globals.iterador] == 'Normal') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
-      } else if (globals.diff[0][globals.iterador] == 'Hard') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+      if (globals.ip != null) {
+        if (globals.diff[0][globals.iterador] == 'Easy') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
+        } else if (globals.diff[0][globals.iterador] == 'Normal') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
+        } else if (globals.diff[0][globals.iterador] == 'Hard') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+        }
       }
       result = result + 'Contagem';
     }
     if (globals.listaEx1['Cor'] == true) {
-      if (globals.diff[1][globals.iterador] == 'Easy') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
-      }
-      if (globals.diff[1][globals.iterador] == 'Normal') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
-      }
-      if (globals.diff[1][globals.iterador] == 'Haerd') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+      if (globals.ip != null) {
+        if (globals.diff[1][globals.iterador] == 'Easy') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
+        }
+        if (globals.diff[1][globals.iterador] == 'Normal') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
+        }
+        if (globals.diff[1][globals.iterador] == 'Haerd') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+        }
       }
       result = result + ' Cor';
     }
     if (globals.listaEx1['Forma'] == true) {
-      if (globals.diff[2][globals.iterador] == 'Easy') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
-      }
-      if (globals.diff[2][globals.iterador] == 'Normal') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
-      }
-      if (globals.diff[2][globals.iterador] == 'Hard') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+      if (globals.ip != null) {
+        if (globals.diff[2][globals.iterador] == 'Easy') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
+        }
+        if (globals.diff[2][globals.iterador] == 'Normal') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
+        }
+        if (globals.diff[2][globals.iterador] == 'Hard') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+        }
       }
       result = result + ' Forma';
     }
     if (globals.listaEx1['Dia'] == true) {
-      if (globals.diff[3][globals.iterador] == 'Easy') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
-      }
-      if (globals.diff[3][globals.iterador] == 'Normal') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
-      }
-      if (globals.diff[3][globals.iterador] == 'Hard') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+      if (globals.ip != null) {
+        if (globals.diff[3][globals.iterador] == 'Easy') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
+        }
+        if (globals.diff[3][globals.iterador] == 'Normal') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
+        }
+        if (globals.diff[3][globals.iterador] == 'Hard') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+        }
       }
       result = result + ' Dia';
     }
@@ -98,49 +106,57 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   String getEx2() {
     String result = '';
-    if (globals.listaEx1['Contagem'] == true) {
-      if (globals.diff[0][globals.iterador] == 'Easy') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
-      } else if (globals.diff[0][globals.iterador] == 'Normal') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
-      } else if (globals.diff[0][globals.iterador] == 'Hard') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+    if (globals.listaEx2['Contagem'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[0][globals.iterador] == 'Easy') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
+        } else if (globals.diff[0][globals.iterador] == 'Normal') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
+        } else if (globals.diff[0][globals.iterador] == 'Hard') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+        }
       }
       result = result + 'Contagem';
     }
-    if (globals.listaEx1['Cor'] == true) {
-      if (globals.diff[1][globals.iterador] == 'Easy') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
-      }
-      if (globals.diff[1][globals.iterador] == 'Normal') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
-      }
-      if (globals.diff[1][globals.iterador] == 'Haerd') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+    if (globals.listaEx2['Cor'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[1][globals.iterador] == 'Easy') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
+        }
+        if (globals.diff[1][globals.iterador] == 'Normal') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
+        }
+        if (globals.diff[1][globals.iterador] == 'Haerd') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+        }
       }
       result = result + ' Cor';
     }
-    if (globals.listaEx1['Forma'] == true) {
-      if (globals.diff[2][globals.iterador] == 'Easy') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
-      }
-      if (globals.diff[2][globals.iterador] == 'Normal') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
-      }
-      if (globals.diff[2][globals.iterador] == 'Hard') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+    if (globals.listaEx2['Forma'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[2][globals.iterador] == 'Easy') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
+        }
+        if (globals.diff[2][globals.iterador] == 'Normal') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
+        }
+        if (globals.diff[2][globals.iterador] == 'Hard') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+        }
       }
       result = result + ' Forma';
     }
-    if (globals.listaEx1['Dia'] == true) {
-      if (globals.diff[3][globals.iterador] == 'Easy') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
-      }
-      if (globals.diff[3][globals.iterador] == 'Normal') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
-      }
-      if (globals.diff[3][globals.iterador] == 'Hard') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+    if (globals.listaEx2['Dia'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[3][globals.iterador] == 'Easy') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
+        }
+        if (globals.diff[3][globals.iterador] == 'Normal') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
+        }
+        if (globals.diff[3][globals.iterador] == 'Hard') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+        }
       }
       result = result + ' Dia';
     }
@@ -149,49 +165,57 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   String getEx3() {
     String result = '';
-    if (globals.listaEx1['Contagem'] == true) {
-      if (globals.diff[0][globals.iterador] == 'Easy') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
-      } else if (globals.diff[0][globals.iterador] == 'Normal') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
-      } else if (globals.diff[0][globals.iterador] == 'Hard') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+    if (globals.listaEx3['Contagem'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[0][globals.iterador] == 'Easy') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
+        } else if (globals.diff[0][globals.iterador] == 'Normal') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
+        } else if (globals.diff[0][globals.iterador] == 'Hard') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+        }
       }
       result = result + 'Contagem';
     }
-    if (globals.listaEx1['Cor'] == true) {
-      if (globals.diff[1][globals.iterador] == 'Easy') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
-      }
-      if (globals.diff[1][globals.iterador] == 'Normal') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
-      }
-      if (globals.diff[1][globals.iterador] == 'Haerd') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+    if (globals.listaEx3['Cor'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[1][globals.iterador] == 'Easy') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
+        }
+        if (globals.diff[1][globals.iterador] == 'Normal') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
+        }
+        if (globals.diff[1][globals.iterador] == 'Haerd') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+        }
       }
       result = result + ' Cor';
     }
-    if (globals.listaEx1['Forma'] == true) {
-      if (globals.diff[2][globals.iterador] == 'Easy') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
-      }
-      if (globals.diff[2][globals.iterador] == 'Normal') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
-      }
-      if (globals.diff[2][globals.iterador] == 'Hard') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+    if (globals.listaEx3['Forma'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[2][globals.iterador] == 'Easy') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
+        }
+        if (globals.diff[2][globals.iterador] == 'Normal') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
+        }
+        if (globals.diff[2][globals.iterador] == 'Hard') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+        }
       }
       result = result + ' Forma';
     }
-    if (globals.listaEx1['Dia'] == true) {
-      if (globals.diff[3][globals.iterador] == 'Easy') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
-      }
-      if (globals.diff[3][globals.iterador] == 'Normal') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
-      }
-      if (globals.diff[3][globals.iterador] == 'Hard') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+    if (globals.listaEx3['Dia'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[3][globals.iterador] == 'Easy') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
+        }
+        if (globals.diff[3][globals.iterador] == 'Normal') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
+        }
+        if (globals.diff[3][globals.iterador] == 'Hard') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+        }
       }
       result = result + ' Dia';
     }
@@ -200,49 +224,57 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   String getEx4() {
     String result = '';
-    if (globals.listaEx1['Contagem'] == true) {
-      if (globals.diff[0][globals.iterador] == 'Easy') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
-      } else if (globals.diff[0][globals.iterador] == 'Normal') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
-      } else if (globals.diff[0][globals.iterador] == 'Hard') {
-        globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+    if (globals.listaEx4['Contagem'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[0][globals.iterador] == 'Easy') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
+        } else if (globals.diff[0][globals.iterador] == 'Normal') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
+        } else if (globals.diff[0][globals.iterador] == 'Hard') {
+          globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+        }
       }
       result = result + 'Contagem';
     }
-    if (globals.listaEx1['Cor'] == true) {
-      if (globals.diff[1][globals.iterador] == 'Easy') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
-      }
-      if (globals.diff[1][globals.iterador] == 'Normal') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
-      }
-      if (globals.diff[1][globals.iterador] == 'Haerd') {
-        globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+    if (globals.listaEx4['Cor'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[1][globals.iterador] == 'Easy') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
+        }
+        if (globals.diff[1][globals.iterador] == 'Normal') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
+        }
+        if (globals.diff[1][globals.iterador] == 'Haerd') {
+          globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+        }
       }
       result = result + ' Cor';
     }
-    if (globals.listaEx1['Forma'] == true) {
-      if (globals.diff[2][globals.iterador] == 'Easy') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
-      }
-      if (globals.diff[2][globals.iterador] == 'Normal') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
-      }
-      if (globals.diff[2][globals.iterador] == 'Hard') {
-        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+    if (globals.listaEx4['Forma'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[2][globals.iterador] == 'Easy') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
+        }
+        if (globals.diff[2][globals.iterador] == 'Normal') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
+        }
+        if (globals.diff[2][globals.iterador] == 'Hard') {
+          globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+        }
       }
       result = result + ' Forma';
     }
-    if (globals.listaEx1['Dia'] == true) {
-      if (globals.diff[3][globals.iterador] == 'Easy') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
-      }
-      if (globals.diff[3][globals.iterador] == 'Normal') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
-      }
-      if (globals.diff[3][globals.iterador] == 'Hard') {
-        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+    if (globals.listaEx4['Dia'] == true) {
+      if (globals.ip != null) {
+        if (globals.diff[3][globals.iterador] == 'Easy') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
+        }
+        if (globals.diff[3][globals.iterador] == 'Normal') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
+        }
+        if (globals.diff[3][globals.iterador] == 'Hard') {
+          globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+        }
       }
       result = result + ' Dia';
     }
