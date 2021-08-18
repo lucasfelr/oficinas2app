@@ -2,6 +2,8 @@ library my_prj.globals;
 
 import 'dart:convert';
 
+List<String> message = [null, null, null, null];
+String ip;
 List<String> criancas = ['', '', '', ''];
 List<bool> criancasValue = [false, false, false, false];
 int iterador = 0;

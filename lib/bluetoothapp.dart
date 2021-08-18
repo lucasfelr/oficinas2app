@@ -28,7 +28,6 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   //Defina algumas variáveis, que serão necessárias posteriormente
   // List<BluetoothDevice> _devicesList = [];
-
   Future connect() async {
     var wifiIP = await (NetworkInfo().getWifiIP());
     final String subnet = wifiIP.substring(0, wifiIP.lastIndexOf('.'));
@@ -37,55 +36,112 @@ class _BluetoothAppState extends State<BluetoothApp> {
     final stream = NetworkAnalyzer.discover2(subnet, port);
     stream.listen((NetworkAddress addr) {
       if (addr.exists) {
-        print('Found device: ${addr.ip}');
+        setState(() {
+          globals.ip = addr.ip;
+        });
       }
     });
   }
 
   var jason = {};
-  List<String> message = [null, null, null, null];
 
   String getEx1() {
     String result = '';
     if (globals.listaEx1['Contagem'] == true) {
+      if (globals.diff[0][globals.iterador] == 'Easy') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
+      } else if (globals.diff[0][globals.iterador] == 'Normal') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
+      } else if (globals.diff[0][globals.iterador] == 'Hard') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+      }
       result = result + 'Contagem';
-      globals.jex[0]['dificuldade'] = globals.diff[0][globals.iterador];
-      jason['add'] = globals.jex[0];
-      message[0] = json.encode(jason['add']);
     }
     if (globals.listaEx1['Cor'] == true) {
+      if (globals.diff[1][globals.iterador] == 'Easy') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
+      }
+      if (globals.diff[1][globals.iterador] == 'Normal') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
+      }
+      if (globals.diff[1][globals.iterador] == 'Haerd') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+      }
       result = result + ' Cor';
-      globals.jex[1]['dificuldade'] = globals.diff[1][globals.iterador];
-      jason['add'] = globals.jex[1];
-      message[1] = json.encode(jason['add']);
     }
     if (globals.listaEx1['Forma'] == true) {
+      if (globals.diff[2][globals.iterador] == 'Easy') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
+      }
+      if (globals.diff[2][globals.iterador] == 'Normal') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
+      }
+      if (globals.diff[2][globals.iterador] == 'Hard') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+      }
       result = result + ' Forma';
-      globals.jex[2]['dificuldade'] = globals.diff[2][globals.iterador];
-      jason['add'] = globals.jex[2];
-      message[2] = json.encode(jason['add']);
     }
     if (globals.listaEx1['Dia'] == true) {
+      if (globals.diff[3][globals.iterador] == 'Easy') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
+      }
+      if (globals.diff[3][globals.iterador] == 'Normal') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
+      }
+      if (globals.diff[3][globals.iterador] == 'Hard') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+      }
       result = result + ' Dia';
-      globals.jex[3]['dificuldade'] = globals.diff[3][globals.iterador];
-      jason['add'] = globals.jex[3];
-      message[3] = json.encode(jason['add']);
     }
     return result;
   }
 
   String getEx2() {
     String result = '';
-    if (globals.listaEx2['Contagem'] == true) {
+    if (globals.listaEx1['Contagem'] == true) {
+      if (globals.diff[0][globals.iterador] == 'Easy') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
+      } else if (globals.diff[0][globals.iterador] == 'Normal') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
+      } else if (globals.diff[0][globals.iterador] == 'Hard') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+      }
       result = result + 'Contagem';
     }
-    if (globals.listaEx2['Cor'] == true) {
+    if (globals.listaEx1['Cor'] == true) {
+      if (globals.diff[1][globals.iterador] == 'Easy') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
+      }
+      if (globals.diff[1][globals.iterador] == 'Normal') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
+      }
+      if (globals.diff[1][globals.iterador] == 'Haerd') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+      }
       result = result + ' Cor';
     }
-    if (globals.listaEx2['Forma'] == true) {
+    if (globals.listaEx1['Forma'] == true) {
+      if (globals.diff[2][globals.iterador] == 'Easy') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
+      }
+      if (globals.diff[2][globals.iterador] == 'Normal') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
+      }
+      if (globals.diff[2][globals.iterador] == 'Hard') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+      }
       result = result + ' Forma';
     }
-    if (globals.listaEx2['Dia'] == true) {
+    if (globals.listaEx1['Dia'] == true) {
+      if (globals.diff[3][globals.iterador] == 'Easy') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
+      }
+      if (globals.diff[3][globals.iterador] == 'Normal') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
+      }
+      if (globals.diff[3][globals.iterador] == 'Hard') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+      }
       result = result + ' Dia';
     }
     return result;
@@ -93,16 +149,50 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   String getEx3() {
     String result = '';
-    if (globals.listaEx3['Contagem'] == true) {
+    if (globals.listaEx1['Contagem'] == true) {
+      if (globals.diff[0][globals.iterador] == 'Easy') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
+      } else if (globals.diff[0][globals.iterador] == 'Normal') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
+      } else if (globals.diff[0][globals.iterador] == 'Hard') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+      }
       result = result + 'Contagem';
     }
-    if (globals.listaEx3['Cor'] == true) {
+    if (globals.listaEx1['Cor'] == true) {
+      if (globals.diff[1][globals.iterador] == 'Easy') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
+      }
+      if (globals.diff[1][globals.iterador] == 'Normal') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
+      }
+      if (globals.diff[1][globals.iterador] == 'Haerd') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+      }
       result = result + ' Cor';
     }
-    if (globals.listaEx3['Forma'] == true) {
+    if (globals.listaEx1['Forma'] == true) {
+      if (globals.diff[2][globals.iterador] == 'Easy') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
+      }
+      if (globals.diff[2][globals.iterador] == 'Normal') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
+      }
+      if (globals.diff[2][globals.iterador] == 'Hard') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+      }
       result = result + ' Forma';
     }
-    if (globals.listaEx3['Dia'] == true) {
+    if (globals.listaEx1['Dia'] == true) {
+      if (globals.diff[3][globals.iterador] == 'Easy') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
+      }
+      if (globals.diff[3][globals.iterador] == 'Normal') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
+      }
+      if (globals.diff[3][globals.iterador] == 'Hard') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+      }
       result = result + ' Dia';
     }
     return result;
@@ -110,16 +200,50 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   String getEx4() {
     String result = '';
-    if (globals.listaEx4['Contagem'] == true) {
+    if (globals.listaEx1['Contagem'] == true) {
+      if (globals.diff[0][globals.iterador] == 'Easy') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/1';
+      } else if (globals.diff[0][globals.iterador] == 'Normal') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/2';
+      } else if (globals.diff[0][globals.iterador] == 'Hard') {
+        globals.message[0] = 'http://' + globals.ip + ':13376/excont/3';
+      }
       result = result + 'Contagem';
     }
-    if (globals.listaEx4['Cor'] == true) {
+    if (globals.listaEx1['Cor'] == true) {
+      if (globals.diff[1][globals.iterador] == 'Easy') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/1';
+      }
+      if (globals.diff[1][globals.iterador] == 'Normal') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/2';
+      }
+      if (globals.diff[1][globals.iterador] == 'Haerd') {
+        globals.message[1] = 'http://' + globals.ip + ':13376/excor/3';
+      }
       result = result + ' Cor';
     }
-    if (globals.listaEx4['Forma'] == true) {
+    if (globals.listaEx1['Forma'] == true) {
+      if (globals.diff[2][globals.iterador] == 'Easy') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/1';
+      }
+      if (globals.diff[2][globals.iterador] == 'Normal') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/2';
+      }
+      if (globals.diff[2][globals.iterador] == 'Hard') {
+        globals.message[2] = 'http://' + globals.ip + ':13376/exforma/3';
+      }
       result = result + ' Forma';
     }
-    if (globals.listaEx4['Dia'] == true) {
+    if (globals.listaEx1['Dia'] == true) {
+      if (globals.diff[3][globals.iterador] == 'Easy') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/1';
+      }
+      if (globals.diff[3][globals.iterador] == 'Normal') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/2';
+      }
+      if (globals.diff[3][globals.iterador] == 'Hard') {
+        globals.message[3] = 'http://' + globals.ip + ':13376/exdias/3';
+      }
       result = result + ' Dia';
     }
     return result;
@@ -288,12 +412,13 @@ class _BluetoothAppState extends State<BluetoothApp> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  connect();
-                },
-                child: Text("Conectar"),
-              ),
+              if (globals.ip == null)
+                FlatButton(
+                  onPressed: () async {
+                    await connect();
+                  },
+                  child: Text("Conectar"),
+                ),
               // Padding(
               //   padding: const EdgeInsets.only(top: 8.0),
               //   child: Text(
@@ -360,10 +485,20 @@ class _BluetoothAppState extends State<BluetoothApp> {
                             // To be implemented : _sendOnMessageToBluetooth()
                             // _connected ? _sendOnMessageToBluetooth : null,
                             globals.iteradorex = 0;
-                            print(message[0]);
-                            print(message[1]);
-                            print(message[2]);
-                            print(message[3]);
+                            // print(message[0]);
+                            // print(message[1]);
+                            // print(message[2]);
+                            // print(message[3]);
+                            // print((Uri.parse(
+                            //     'http://' + globals.ip + ':13376/exformas')));
+                            // http.get(Uri.parse(
+                            //     'http://' + globals.ip + ':13376/exformas'));
+                            getEx1();
+                            for (var i; i < 4; i++) {
+                              if (globals.message[i] != null) {
+                                http.get(Uri.parse(globals.message[i]));
+                              }
+                            }
                             // _sendMessageToBluetooth(message[0]);
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
@@ -404,6 +539,12 @@ class _BluetoothAppState extends State<BluetoothApp> {
                             // To be implemented : _sendOnMessageToBluetooth()
                             // _connected ? _sendOnMessageToBluetooth : null,
                             globals.iteradorex = 1;
+                            getEx2();
+                            for (var i; i < 4; i++) {
+                              if (globals.message[i] != null) {
+                                http.get(Uri.parse(globals.message[i]));
+                              }
+                            }
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => Waiting()),
@@ -443,6 +584,12 @@ class _BluetoothAppState extends State<BluetoothApp> {
                             // To be implemented : _sendOnMessageToBluetooth()
                             // _connected ? _sendOnMessageToBluetooth : null,
                             globals.iteradorex = 2;
+                            getEx3();
+                            for (var i; i < 4; i++) {
+                              if (globals.message[i] != null) {
+                                http.get(Uri.parse(globals.message[i]));
+                              }
+                            }
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => Waiting()),
@@ -482,6 +629,12 @@ class _BluetoothAppState extends State<BluetoothApp> {
                             // To be implemented : _sendOnMessageToBluetooth()
                             // _connected ? _sendOnMessageToBluetooth : null,
                             globals.iteradorex = 3;
+                            getEx4();
+                            for (var i; i < 4; i++) {
+                              if (globals.message[i] != null) {
+                                http.get(Uri.parse(globals.message[i]));
+                              }
+                            }
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => Waiting()),
